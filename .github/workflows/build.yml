@@ -1,0 +1,20 @@
+name: React app
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-node:
+    runs-on: self-hosted
+    container: node-
+
+    # strategy:
+    #   matrix:
+    #     node-version: [14.x]
+    #     # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm i
+      - run: npm start
