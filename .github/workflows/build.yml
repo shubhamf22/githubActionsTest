@@ -10,4 +10,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: npm i
-      - run: npm start
+      - run: node index.js
