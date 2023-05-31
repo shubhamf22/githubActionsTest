@@ -10,4 +10,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: npm i
-      - run: node index.js
+      - run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "Running command 1"
+            # Run command 1 for the "main" branch
+            node index.js
+          elif [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
+            echo "Running command 2"
+            # Run command 2 for the "dev" branch
+            node dev.js
+          else
+            echo "Unsupported branch"
+          fi
