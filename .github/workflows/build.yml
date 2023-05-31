@@ -1,13 +1,13 @@
-name: React app
+name: Node app
 
 on:
   push:
-    branches: ["main"]
+    branches: ["Main"]
 
 jobs:
   build-node:
     runs-on: self-hosted
-    container: node-
+    container: node-18
 
     # strategy:
     #   matrix:
