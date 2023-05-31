@@ -1,24 +1,44 @@
-name: Node app
+# name: Node app
 
+# on:
+#   push:
+#     branches: ["Main"]
+
+# jobs:
+#   build-node:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - run: npm i
+#       - run: |
+#           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+#             node index.js
+#           elif [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
+#             node dev.js
+#           else
+#             echo "Unsupported branch"
+#           fi
+
+name: Deploy Luxunlock
+run-name: "Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}"
 on:
   push:
-    branches: ["Main"]
-
+    branches:
+      - main
+      - qa
+      - dev
 jobs:
-  build-node:
-    runs-on: ubuntu-latest
+  deploys:
+    runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v3
-      - run: npm i
-      - run: |
-          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-            echo "Running command 1"
-            # Run command 1 for the "main" branch
-            node index.js
-          elif [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
-            echo "Running command 2"
-            # Run command 2 for the "dev" branch
-            node dev.js
-          else
-            echo "Unsupported branch"
-          fi
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Main build
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: echo "main event."
+      - name: QA build
+        if: ${{ github.ref == 'refs/heads/qa' }}
+        run: echo "qa event."
+      - name: Dev build
+        if: ${{ github.ref == 'refs/heads/dev' }}
+        run: echo "dev event."

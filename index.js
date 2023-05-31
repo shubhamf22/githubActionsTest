@@ -1,5 +1,5 @@
 // console.log("hellow world")
-console.log("hellow f22labs")
+console.log("hellow f22labs after runner setup")
 
 
 let moment = require('moment')
