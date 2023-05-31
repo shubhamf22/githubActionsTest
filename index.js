@@ -1,5 +1,7 @@
 // console.log("hellow world")
 console.log("hellow f22labs")
+console.log("running on index.js")
+
 
 
 let moment = require('moment')
